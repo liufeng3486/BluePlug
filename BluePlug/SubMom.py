@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os,time,sys
-from Base import *
-from FindAxis import *
+from BluePlug.Base import *
+from BluePlug.FindAxis import *
 #子方法父类
 class SubMom(object):
     def __init__(self,index,self_image=False,screenshot=False):

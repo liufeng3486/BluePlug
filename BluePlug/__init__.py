@@ -1,4 +1,6 @@
 
-from .Test import *
+from .demo_test import *
+from .QtWork import *
+from .SubMom import *
 
 

@@ -15,7 +15,7 @@ def compare_matrix(m1, m2, operand):
         return True if (m1==m2).all() else False
 
 def image2array(image_path):
-    im_array:np.array = None
+    # im_array:np.array = None
     # print (image_path)
     if image_path is not None and os.path.exists(image_path):
         im = Image.open(image_path).convert("L")

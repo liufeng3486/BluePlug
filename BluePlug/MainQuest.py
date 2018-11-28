@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os,time,sys
-from Base import *
-import SubMom
+# from BluePlug import *
+import BluePlug
 
-class MainQuest(SubMom.SubMom):
+import BluePlug.SubMom
+
+class MainQuest(BluePlug.SubMom.SubMom):
     def run(self):
         self.spec_dict = {
             "Spec_1": [

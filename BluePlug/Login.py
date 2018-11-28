@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os,time
-from Base import *
-from FindAxis import *
+from BluePlug.Base import *
+from BluePlug.FindAxis import *
 # from ChooseZone import *
 
-import SubMom
+import BluePlug.SubMom
 
-class Login(SubMom.SubMom):
+class Login(BluePlug.SubMom.SubMom):
 
     def run(self):
         try:

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os,time
-from Base import *
+from BluePlug.Base import *
 #启动模拟器以及APP
 
 class Init(object):

@@ -1,10 +1,10 @@
 from PyQt5 import QtCore
-from Base import *
-import Init as Init
-import Login as Login
+from BluePlug.Base import *
+import BluePlug.Init as Init
+import BluePlug.Login as Login
 # import Answer,DailyQuest,PetFight,PlotCopy
 # import SetInit
-import MainQuest as MainQuest
+import BluePlug.MainQuest as MainQuest
 # import CreateRole as CreateRole
 import time,shutil
 
