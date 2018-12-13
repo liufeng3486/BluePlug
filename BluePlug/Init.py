@@ -5,13 +5,13 @@ from BluePlug.Base import *
 #启动模拟器以及APP
 
 class Init(object):
-    def __init__(self,index):
+    def __init__(self,index,app=""):
         self.index = index
 
     def start_mock(self):
 
         string = ".\dnplayer2\dnconsole.exe launch --index %s" % str(index)
-        os.system(string)
+        os.popen(string)
 
     def start_app(self, channel=False):
         # self.index = index
@@ -64,7 +64,7 @@ class Init(object):
 
 def start_mock(index):
     string = ".\dnplayer2\dnconsole.exe launch --index %s"%str(index)
-    os.system(string)
+    os.popen(string)
 
 def start_app(index,channel=False):
     try:

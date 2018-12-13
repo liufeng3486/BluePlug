@@ -49,7 +49,7 @@ class SubMom(object):
     def click(self,temp): #click
         print("click add:", temp)
         string = '.\dnplayer2\dnconsole.exe adb --index %s  --command "shell input tap %s "' % (str(self.index), temp)
-        os.system(string)
+        os.popen(string)
 
     def setup(self):  #初始化
         if self.screenshot:

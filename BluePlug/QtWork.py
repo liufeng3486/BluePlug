@@ -2,6 +2,7 @@ from PyQt5 import QtCore
 from BluePlug.Base import *
 import BluePlug.Init as Init
 import BluePlug.Login as Login
+from subprocess import Popen, PIPE, STDOUT
 # import Answer,DailyQuest,PetFight,PlotCopy
 # import SetInit
 import BluePlug.MainQuest as MainQuest
@@ -53,19 +54,27 @@ class Worker(QtCore.QThread):
             pass
 
     def get_image(self,name="screenshot.png"):  # 获取图片
-        print("get image")
-        os.system(
-            '.\dnplayer2\dnconsole.exe adb --index %s  --command "shell /system/bin/screencap -p /sdcard/screenshot.png"' % str(
-                self.index))
-        os.system(
-            '.\dnplayer2\dnconsole.exe adb --index %s  --command "pull /sdcard/screenshot.png d:/ChangZhi/%s/%s"' % (
-            str(self.index), str(self.index), name))
-        pngTranspose("d:/ChangZhi/%s/%s" % (str(self.index), name))
-        print (time.time() - self.start )
+        temp1 = '.\dnplayer2\dnconsole.exe adb --index %s  --command "shell /system/bin/screencap -p /sdcard/screenshot.png"' % str(
+                self.index)
+        temp2 =  '.\dnplayer2\dnconsole.exe adb --index %s  --command "pull /sdcard/screenshot.png ./%s/%s"' % (
+            str(self.index), str(self.index), name)
+
+        command = temp1+"&&"+temp2
+        p = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
+        output, errors = p.communicate()
+        if errors:
+            print(errors)
+
+
+
+
+
+        pngTranspose("./%s/%s" % (str(self.index), name))
+        print ("do")
         if time.time() - self.start > 600:
-            print("get error log")
+            print("get log")
             self.start = time.time()
-            shutil.copyfile("d:/ChangZhi/%s/%s" % (str(self.index), name), "d:/ChangZhi/%s/%s"%(str(self.index),str(int(time.time()))+".png"))
+            shutil.copyfile("./%s/%s" % (str(self.index), name), "./%s/%s"%(str(self.index),str(int(time.time()))+".png"))
             # with open("d:/ChangZhi/%s/%s" % (str(self.index), name),"r")
 
     def subFunCall(self,func):
