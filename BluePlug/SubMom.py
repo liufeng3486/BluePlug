@@ -7,6 +7,7 @@ from BluePlug.FindAxis import *
 class SubMom(object):
     def __init__(self,index,self_image=False,screenshot=False):
         self.filename = ".\\bmp\\"+self.__class__.__name__ #获取bmp路径
+        mkdir(self.filename)
         self.self_image = self_image
         self.screenshot = screenshot
         self.index = index  #设备号

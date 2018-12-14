@@ -31,6 +31,17 @@ class Base():
             # if not pix_assert(im_list[add[0]][add[1]], point_list[index + 1]):
             #     return False
         return True
+    @staticmethod
+    def executeCatch(fun):
+        def add_cap(*args, **kwargs):
+            try:
+                fun(*args, **kwargs)
+            except Exception as ex:
+                print('Error execute: %s' % fun.__name__)
+                print('Exception: %s' % ex)
+                print(kwargs)
+                return False
+        return add_cap
 def get_image_array(path): #图片转np.array
     im = Image.open(path, "r")
     img_array = np.array(im)

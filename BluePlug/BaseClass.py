@@ -1,5 +1,6 @@
 import os,time
 from BluePlug.Base import *
+import BluePlug.SubMom
 class BaseClass():
     class Init(object):
         def __init__(self,index,app="",path = ".\dnplayer2\dnconsole.exe",channel=False):
@@ -9,11 +10,7 @@ class BaseClass():
             self.mock_path = "%s launch --index %s" % (path,str(index))
             self.setup()
         def setup(self):
-            self.check_list = [[36, 466], [255, 247, 186],
-                                          [47, 465], [255, 247, 186],
-                                          [50, 459], [195, 157, 121]]
             pass
-
         def start_mock(self):
             os.popen(self.mock_path)
         def sysPrint(self,*data):
@@ -25,7 +22,6 @@ class BaseClass():
                 print (string)
                 result = os.popen(string)
                 res = result.read()
-                print (res.splitlines())
                 for line in res.splitlines():
                     if "found" in line:
                         return False
@@ -35,7 +31,6 @@ class BaseClass():
                 return False
 
         def init_start(self):
-            # self.index = index
             self.start_mock()
             self.sysPrint("Mock Start Up")
             for i in range(10):
@@ -48,10 +43,7 @@ class BaseClass():
                     self.sysPrint("Mock Starting...")
             self.sysPrint("Mock Start Up TimeOut")
             return False
-
         def start_check(self):
-            # self.index = index
-            self.setup()
             try:
                 for i in range(20):
                     time.sleep(1)
@@ -65,3 +57,14 @@ class BaseClass():
             except Exception as ex:
                 self.sysPrint("start_check false", str(ex))
                 return "Init.start_check Error"
+    class DefaultClose(BluePlug.SubMom):
+        def run(self):
+            try:
+                state = self.setup()
+                if state[0] :
+                    self.click(state[1])
+                    return  True
+                return False
+            except Exception as ex:
+                print(str(ex))
+                return False
